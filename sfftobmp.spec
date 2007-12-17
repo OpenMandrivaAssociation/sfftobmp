@@ -13,7 +13,6 @@ BuildRequires:	automake1.7
 BuildRequires:	boost-devel
 BuildRequires:	libtiff-devel
 BuildRequires:	jpeg-devel
-BuildRoot:	%{_tmppath}/%{name}-%{version}
 
 %description
 SffToBmp is a converter tool, written in C++, to transform SFF files to BMP,
