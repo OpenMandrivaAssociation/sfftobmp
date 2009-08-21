@@ -1,13 +1,15 @@
+%define version 3.1.2
+%define realver %(echo %version|sed -e 's#\\.#_#g')
+
 Summary:	Tool to transform SFF files to BMP
 Name:		sfftobmp
-Version:	3.1
-Release:	%mkrel 5
+Version:	%version
+Release:	%mkrel 1
 License:	MIT
 Group:		Communications
 URL:		http://sfftools.sourceforge.net/
-Source0:	sfftobmp_3_1_src.tar.bz2
-Patch0:		sfftobmp-3.1-gcc43.patch
-BuildRequires:	libtool
+Source0:	http://downloads.sourceforge.net/project/sfftools/%{name}/%{name}_%{realver}/%{name}%{realver}_src.zip
+Patch0:		sfftobmp-3.1.1-gcc44-and-boost-1_37.patch
 BuildRequires:	boost-devel
 BuildRequires:	libtiff-devel
 BuildRequires:	jpeg-devel
@@ -21,25 +23,16 @@ can be transformed into nearby any other graphics format using the PBMPLUS
 tools that are included in almost every Linux distribution nowadays.
 
 %prep
-
-%setup -q -n %{name}%{version}
-%patch0 -p1 -b .gcc43
-
-for i in `find . -type d -name CVS` `find . -type f -name .cvs\*` `find . -type f -name .#\*`; do
-    if [ -e "$i" ]; then rm -rf $i; fi >&/dev/null
-done
+%setup -q -n %{name}%{realver}
+%patch0 -p1
 
 %build
-rm -f configure
-touch NEWS README AUTHORS ChangeLog
-autoreconf -i
 %configure2_5x
-
 %make 
 
 %install
 [ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
-%makeinstall
+%makeinstall_std
 
 %clean
 [ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
