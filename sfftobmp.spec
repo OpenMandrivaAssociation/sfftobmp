@@ -4,7 +4,7 @@
 Summary:	Tool to transform SFF files to BMP
 Name:		sfftobmp
 Version:	%version
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	MIT
 Group:		Communications
 URL:		http://sfftools.sourceforge.net/
