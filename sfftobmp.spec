@@ -27,6 +27,7 @@ tools that are included in almost every Linux distribution nowadays.
 %patch0 -p1
 
 %build
+export CXXFLAGS="%optflags  -DBOOST_FILESYSTEM_VERSION=2"
 %configure2_5x
 %make 
 
