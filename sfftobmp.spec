@@ -1,19 +1,17 @@
-%define version 3.1.2
 %define realver %(echo %version|sed -e 's#\\.#_#g')
 
 Summary:	Tool to transform SFF files to BMP
 Name:		sfftobmp
-Version:	%version
-Release:	%mkrel 6
+Version:	3.1.2
+Release:	7
 License:	MIT
 Group:		Communications
 URL:		http://sfftools.sourceforge.net/
 Source0:	http://downloads.sourceforge.net/project/sfftools/%{name}/%{name}_%{realver}/%{name}%{realver}_src.zip
 Patch0:		sfftobmp-3.1.1-gcc44-and-boost-1_37.patch
 BuildRequires:	boost-devel
-BuildRequires:	libtiff-devel
+BuildRequires:	tiff-devel
 BuildRequires:	jpeg-devel
-BuildRoot:	%{_tmppath}/%{name}-%{version}
 
 %description
 SffToBmp is a converter tool, written in C++, to transform SFF files to BMP,
@@ -29,18 +27,12 @@ tools that are included in almost every Linux distribution nowadays.
 %build
 export CXXFLAGS="%optflags  -DBOOST_FILESYSTEM_VERSION=2"
 %configure2_5x
-%make 
+%make LIBS='-lboost_system'
 
 %install
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
 %makeinstall_std
 
-%clean
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
-
 %files
-%defattr(-,root,root)
 %doc doc/*
 %{_bindir}/%{name}
-
 
