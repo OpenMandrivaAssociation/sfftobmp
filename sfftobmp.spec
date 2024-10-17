@@ -6,7 +6,7 @@ Version:	3.1.2
 Release:	7
 License:	MIT
 Group:		Communications
-URL:		http://sfftools.sourceforge.net/
+URL:		https://sfftools.sourceforge.net/
 Source0:	http://downloads.sourceforge.net/project/sfftools/%{name}/%{name}_%{realver}/%{name}%{realver}_src.zip
 Patch0:		sfftobmp-3.1.1-gcc44-and-boost-1_37.patch
 BuildRequires:	boost-devel
